@@ -63,6 +63,16 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
         jqWindow.on('resize', update);
       }
 
+      // Custom event - update
+      $scope.$on('perfectScrollbarUpdated', function(){
+        $elem.perfectScrollbar('update');
+      });
+
+      // Make update immediately
+      if ($attr.update) {
+        $elem.perfectScrollbar('update');
+      }
+
       $elem.bind('$destroy', function() {
         jqWindow.off('resize', update);
         $elem.perfectScrollbar('destroy');
